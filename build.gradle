@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.139'
+    id 'net.neoforged.moddev' version '2.0.110'
     id 'idea'
 }
 
@@ -19,10 +19,15 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
+    maven { url = "https://cursemaven.com" } // CurseForge
+    maven { url = "https://maven.blamejared.com" } // JEI, Vazkii's Mods
+    maven { url = "https://api.modrinth.com/maven" } // Jade
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "create-virtualworld-compat"
 }
 
 // Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
@@ -112,6 +117,27 @@ configurations {
 }
 
 dependencies {
+    // Create mod dependencies
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    localRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    localRuntime("maven.modrinth:jade:${jade_version}")
+    // Create Diesel Generators - optional soft dependency
+    // localRuntime("maven.modrinth:create-diesel-generators:${diesel_generators_version}")
+    //Enchantment industry - optional soft dependency
+    // localRuntime("maven.modrinth:create-dragons-plus:${create_dragons_plus_version}")
+    // localRuntime("maven.modrinth:create-enchantment-industry:${create_enchantment_industry_version}")
+    
+    // MrCrayfish Furniture Mod
+    compileOnly("curse.maven:CFM-897116:${cfm_version}")
+    runtimeOnly("curse.maven:CFM-897116:${cfm_version}")
+    //Framework for MrCrayfish mods
+    localRuntime("curse.maven:Framework-549225:7462477")
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -143,10 +169,16 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
             loader_version_range   : loader_version_range,
+            create_version         : create_version,
+            create_version_range   : create_version_range,
+            flywheel_version       : flywheel_version,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
             mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            cfm_version            : cfm_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties

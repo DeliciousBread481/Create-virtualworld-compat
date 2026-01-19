@@ -24,3 +24,13 @@ runs
 run-data
 
 repo
+# Temporary and analysis files
+temp_decompile/
+*.txt
+!CHANGELOG.md
+!README.md
+!CONTRIBUTING.md
+!LICENSE
+
+# VS Code
+.vscode/

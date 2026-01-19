@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.agent772.create_virtualworld_compat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "VirtualRenderWorldMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
