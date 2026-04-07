@@ -2,8 +2,8 @@ plugins {
     id 'java-library'  
     id 'maven-publish'  
     id 'idea'  
-    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'  
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'  
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT' 
 }  
   
 version = mod_version  
@@ -16,7 +16,7 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)  
   
 minecraft {  
-    mappings channel: 'parchment', version: "${parchment_mappings_version}-${parchment_minecraft_version}"  
+    mappings channel: 'official', version: '1.20.1'
   
     copyIdeResources = true  
   
