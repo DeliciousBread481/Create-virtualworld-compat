@@ -1,0 +1,14 @@
+{  
+  "required": true,  
+  "minVersion": "0.8",  
+  "package": "com.deliciousbread481.create_virtualworld_compat.mixin",  
+  "compatibilityLevel": "JAVA_17",  
+  "refmap": "create_virtualworld_compat.refmap.json",  
+  "mixins": [  
+    "VirtualRenderWorldMixin"  
+  ],  
+  "client": [],  
+  "injectors": {  
+    "defaultRequire": 1  
+  }  
+}
